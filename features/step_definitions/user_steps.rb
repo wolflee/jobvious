@@ -1,7 +1,7 @@
 ### UTILITY METHODS ###
 
 def create_visitor
-  @visitor ||= { :email => "example@example.com",
+  @visitor ||= { :username => "Jobs, Vious", :email => "example@example.com",
     :password => "changeme", :password_confirmation => "changeme" }
 end
 
@@ -30,6 +30,7 @@ end
 def sign_up
   delete_user
   visit '/users/sign_up'
+  fill_in "user_username", :with => @visitor[:username]
   fill_in "user_email", :with => @visitor[:email]
   fill_in "user_password", :with => @visitor[:password]
   fill_in "user_password_confirmation", :with => @visitor[:password_confirmation]
@@ -122,12 +123,13 @@ end
 
 When /^I edit my account details$/ do
   click_link "Edit account"
+  fill_in "user_username", :with => "newname"
   fill_in "user_current_password", :with => @visitor[:password]
   click_button "Update"
 end
 
 When /^I look at the list of users$/ do
-  visit '/'
+  visit '/users'
 end
 
 ### THEN ###
@@ -181,4 +183,9 @@ end
 
 Then /^I should see an account edited message$/ do
   page.should have_content "You updated your account successfully."
+end
+
+Then /^I should see my name$/ do
+  create_user
+  page.should have_content @user[:username]
 end
