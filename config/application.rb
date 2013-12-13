@@ -24,5 +24,12 @@ module Jobvious
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # Credentials import for future, plain ruby should be another approach
+    #oauth_keys = File.join(Rails.root, 'config', 'oauth_keys.yml')
+    #OAUTH_CONFIG = HashWithIndifferentAccess.new(YAML::load(IO.read(oauth_keys)))[Rails.env]
+    #OAUTH_CONFIG.each do |k,v|
+      #ENV[k.upcase] ||= v
+    #end
   end
 end

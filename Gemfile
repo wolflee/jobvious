@@ -30,6 +30,8 @@ end
 gem 'puma'
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-linkedin-oauth2'
 
 group :development, :test do
   gem 'rspec-rails'
