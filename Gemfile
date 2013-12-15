@@ -28,6 +28,7 @@ end
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem 'puma'
+gem 'rails_12factor', group: :production
 
 gem 'devise'
 gem 'omniauth'
