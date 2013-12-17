@@ -1,0 +1,35 @@
+<h1>Current posted jobs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Location</th>
+      <th>Description</th>
+      <th>Contact</th>
+      <th>Company</th>
+      <th>Url</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jobs.each do |job| %>
+      <tr>
+        <td><%= job.title %></td>
+        <td><%= job.location %></td>
+        <td><%= job.description %></td>
+        <td><%= job.contact %></td>
+        <td><%= job.company %></td>
+        <td><%= job.url %></td>
+        <td><%= link_to 'More detail', job %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Post My Job', new_job_path %>
