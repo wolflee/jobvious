@@ -5,6 +5,7 @@ Jobvious::Application.routes.draw do
   resources :jobs, shallow: true do
     resources :applications, only: [:new, :create, :show, :destroy]
   end
+  resource :dashboard, only: :show
   # if jobs/:id/applications/new looks verbose, then we can use
   #get 'jobs/:id/apply', to: 'applications#new', as: :new_application
   #post 'jobs/:id/apply', to: 'applications#create'

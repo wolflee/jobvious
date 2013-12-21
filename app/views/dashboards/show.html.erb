@@ -1,0 +1,30 @@
+<% if @jobs.present? %>
+Jobs I posted:
+  <% @jobs.each do |job| %>
+    <p>
+      <%= job.company %>: <%= link_to job.title, job %> @<%= job.location %>
+    </p>
+
+    <% if job.applications.present? %>
+      Applicants:
+      <ul>
+      <% job.applications.each do |application| %>
+        <li><%= application.name %> Resume: <%= link_to 'Download', application.resume.url %></li>
+      <% end %>
+      </ul>
+    <% else %>
+      No Application yet.
+    <% end %>
+  <% end %>
+  <hr>
+<% end %>
+
+<% if @applications.present? %>
+Jobs I applied:
+  <ul>
+  <% @applications.each do |applied| %>
+    <li>
+      <%= applied.job.company %>: <%= link_to applied.job.title, applied.job %> @<%= applied.job.location %>
+    </li>
+  <% end %>
+<% end %>
