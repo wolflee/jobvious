@@ -1,13 +1,14 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :job_poster!, only: [:edit, :update, :destroy]
+  before_action :check_poster!, only: [:edit, :update, :destroy]
 
   def index
     @jobs = Job.all
   end
 
   def show
+    @applied = @job.applications.find_by user_id: current_user.id if user_signed_in?
   end
 
   def new
@@ -48,7 +49,7 @@ class JobsController < ApplicationController
     params.require(:job).permit(:title, :location, :description, :contact, :company, :url)
   end
 
-  def job_poster!
+  def check_poster!
     redirect_to jobs_url, alert: "This job doesn't belong to you." unless @job.user == current_user
   end
 end

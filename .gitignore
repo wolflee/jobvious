@@ -17,3 +17,6 @@
 
 # Ignore credentials
 /config/oauth_keys.yml
+
+# Ignore uploads
+/public/uploads/*

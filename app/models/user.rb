@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   has_many :authorizations
   has_many :jobs
+  has_many :applications
 
   def self.from_omniauth(auth, current_user)
     authorization = Authorization.where(provider: auth.provider,

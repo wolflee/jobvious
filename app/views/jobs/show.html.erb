@@ -30,6 +30,15 @@
 
 <% if current_user == @job.user %>
 <%= link_to 'Edit', edit_job_path(@job)%> |
-<% # please use css to control '|' %>
+<% else %>
+<div>
+  <% if @applied %>
+  Already applied, if you continue, the previous one will be renewed.
+  <%= link_to 'Apply Anyway!', new_job_application_path(@job) %>
+  <% else %>
+  <%= link_to 'Apply!', new_job_application_path(@job) %>
+  <% end %>
+</div>
 <% end %>
+<% # please use css to control '|' %>
 <%= link_to 'Back', jobs_path %>

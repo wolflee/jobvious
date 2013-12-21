@@ -1,8 +1,14 @@
 Jobvious::Application.routes.draw do
+  root 'jobs#index'
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   resources :users, only: :index
-  resources :jobs
-  root 'jobs#index'
+  resources :jobs, shallow: true do
+    resources :applications, only: [:new, :create, :show, :destroy]
+  end
+  # if jobs/:id/applications/new looks verbose, then we can use
+  #get 'jobs/:id/apply', to: 'applications#new', as: :new_application
+  #post 'jobs/:id/apply', to: 'applications#create'
+  #
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
