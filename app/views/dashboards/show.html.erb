@@ -9,7 +9,7 @@ Jobs I posted:
       Applicants:
       <ul>
       <% job.applications.each do |application| %>
-        <li><%= application.name %> Resume: <%= link_to 'Download', application.resume.url %></li>
+        <li><%= link_to application.name, application %> Resume: <%= link_to 'Download', application.resume.url %></li>
       <% end %>
       </ul>
     <% else %>
