@@ -1,5 +1,12 @@
 <h1>Current posted jobs</h1>
 
+<%= form_tag jobs_path, method: :get do %>
+  <p>
+    <%= search_field_tag :q, params[:q] %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+
 <table>
   <thead>
     <tr>
