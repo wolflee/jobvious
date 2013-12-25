@@ -28,6 +28,7 @@ gem 'omniauth'
 gem 'omniauth-linkedin-oauth2'
 gem 'carrierwave'
 gem 'tire'
+gem 'kaminari'
 
 group :development, :test do
   gem 'rspec-rails'
