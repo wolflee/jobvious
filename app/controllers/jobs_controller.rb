@@ -4,7 +4,7 @@ class JobsController < ApplicationController
   before_action :check_poster!, only: [:edit, :update, :destroy]
 
   def index
-    @jobs = Job.all
+    @jobs = Job.search(params)
   end
 
   def show
