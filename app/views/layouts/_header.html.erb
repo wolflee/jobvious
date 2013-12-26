@@ -1,11 +1,43 @@
-<nav>
-  <ul>
-    <% if user_signed_in? %>
-      <li><%= link_to "Edit account", edit_user_registration_path %></li>
-      <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-  <% else %>
-      <li><%= link_to "Sign In", new_user_session_path %></li>
-    <li><%= link_to "Sign Up", new_user_registration_path %></li>
-  <% end %>
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/">Jobvious</a></h1>
+    </li>
+    <li class="toggle-topbar menu-icon">
+      <a href="#"><span>Menu</span></a>
+    </li>
   </ul>
+
+  <section class="top-bar-section">
+    <ul class="right">
+    <% if user_signed_in? %>
+      <li class="has-dropdown">
+        <%= link_to current_user.username, root_path %>
+        <ul class="dropdown">
+          <li><%= link_to "Edit account", edit_user_registration_path %></li>
+          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </li>
+    <% else %>
+      <ul class="has-form">
+        <li><%= link_to "Sign In", new_user_session_path, class: 'alert button' %></li>
+      </ul>
+    <% end %>
+    </ul>
+
+    <ul class="left">
+      <li class="has-form">
+      <%= form_tag jobs_path, method: :get do %>
+        <div class="row collapse">
+          <div class="large-8 small-9 columns">
+            <%= text_field_tag :q, params[:q], placeholder: 'Find jobs' %>
+          </div>
+          <div class="large-4 small-3 columns">
+            <%= submit_tag "Search", name: nil, class: 'button expand' %>
+          </div>
+        </div>
+      <% end %>
+      </li>
+    </ul>
+  </section>
 </nav>

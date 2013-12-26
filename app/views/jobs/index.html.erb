@@ -1,43 +1,31 @@
-<h1>Current posted jobs</h1>
+<div class="small-11 small-centered columns">
+  <h2>Recent posted jobs</h2>
 
-<%= form_tag jobs_path, method: :get do %>
-  <p>
-    <%= search_field_tag :q, params[:q] %>
-    <%= submit_tag "Search", name: nil %>
-  </p>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Location</th>
-      <th>Description</th>
-      <th>Contact</th>
-      <th>Company</th>
-      <th>Url</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @jobs.each do |job| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= job.title %></td>
-        <td><%= job.location %></td>
-        <td><%= job.description %></td>
-        <td><%= job.contact %></td>
-        <td><%= job.company %></td>
-        <td><%= job.url %></td>
-        <td><%= link_to 'More detail', job %></td>
+        <th>Title</th>
+        <th>Location</th>
+        <th>Company</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<%= paginate @jobs %>
-<br>
+    </thead>
 
-<%= link_to 'Post My Job', new_job_path %>
+    <tbody>
+      <% @jobs.each do |job| %>
+        <tr>
+          <td><%= job.title %></td>
+          <td><%= job.location %></td>
+          <td><%= job.company %></td>
+          <td><%= link_to 'More detail', job %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= paginate @jobs %>
+
+<div class="small-3 small-centered columns">
+  <%= link_to 'Post My Job', new_job_path, class: 'button' %>
+</div>
