@@ -1,12 +1,22 @@
 <div class="small-11 small-centered columns">
+  <%= form_tag jobs_path, method: :get do %>
+    <div class="row collapse show-for-small-only">
+      <div class="small-10 columns">
+        <%= text_field_tag :q, params[:q], placeholder: 'Find jobs' %>
+      </div>
+      <div class="small-2 columns">
+        <%= submit_tag "Search", name: nil, class: 'button postfix' %>
+      </div>
+    </div>
+  <% end %>
   <h2>Recent posted jobs</h2>
 
   <table>
     <thead>
       <tr>
         <th>Title</th>
-        <th>Location</th>
-        <th>Company</th>
+        <th class="hide-for-small-only">Location</th>
+        <th class="hide-for-small-only">Company</th>
         <th></th>
       </tr>
     </thead>
@@ -14,9 +24,9 @@
     <tbody>
       <% @jobs.each do |job| %>
         <tr>
-          <td><%= job.title %></td>
-          <td><%= job.location %></td>
-          <td><%= job.company %></td>
+          <td><%= job.title %><em class="show-for-small-only"> @ <%= job.location %></em></td>
+          <td class="hide-for-small-only"><%= job.location %></td>
+          <td class="hide-for-small-only"><%= job.company %></td>
           <td><%= link_to 'More detail', job %></td>
         </tr>
       <% end %>
@@ -27,5 +37,5 @@
 <%= paginate @jobs %>
 
 <div class="small-3 small-centered columns">
-  <%= link_to 'Post My Job', new_job_path, class: 'button' %>
+  <%= link_to 'Post My Job', new_job_path, class: 'button expand round' %>
 </div>
