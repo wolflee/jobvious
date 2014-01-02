@@ -1,30 +1,52 @@
-<% if @jobs.present? %>
-Jobs I posted:
-  <% @jobs.each do |job| %>
-    <p>
-      <%= job.company %>: <%= link_to job.title, job %> @<%= job.location %>
-    </p>
+<div class="large-8 small-9 columns">
+  <dl class="tabs" data-tab>
+    <dd class="active"><a href="#jobs">Jobs I posted</a></dd>
+    <dd><a href="#applications">Jobs I applied</a></dd>
+  </dl>
+  <div class="tabs-content vertical">
+    <div class="content active" id="jobs">
+      <br>
+      <% if @jobs.present? %>
+        <dl class="accordion" data-accordion>
+          <% @jobs.each do |job| %>
+            <dd>
+              <a href="#job-<%= job.id %>"><%= job.title %></a>
+              <div class="content <%= 'active' if job == @jobs.first %>" id="job-<%= job.id %>">
+                <h3><%= link_to job.title, job %></h3>
+                <%= job.company %> @<em><%= job.location %></em>
 
-    <% if job.applications.present? %>
-      Applicants:
-      <ul>
-      <% job.applications.each do |application| %>
-        <li><%= link_to application.name, application %> Resume: <%= link_to 'Download', application.resume.url %></li>
+                <% if job.applications.present? %>
+                  <p>Applicants: </p>
+                  <ul>
+                    <% job.applications.each do |application| %>
+                      <li><%= link_to application.name, application %> Resume: <%= link_to 'Download', application.resume.url %></li>
+                    <% end %>
+                  </ul>
+                <% else %>
+                  <p>No Application yet.</p>
+                <% end %>
+              </div>
+            </dd>
+          <% end %>
+        <% end %>
+      </dl>
+    </div>
+
+    <div class="content" id="applications">
+      <br>
+      <% if @applications.present? %>
+        <dl class="accordion" data-accordion>
+          <% @applications.each do |applied| %>
+            <dd>
+              <a href="#app-<%= applied.id %>"><%= applied.job.title %></a>
+              <div class="content <%= 'active' if applied == @applications.first %>" id="app-<%= applied.id %>">
+                <h3><%= link_to applied.job.title, applied.job %></h3>
+                <%= applied.job.company %> @<em><%= applied.job.location %></em>
+              </div>
+            </dd>
+          <% end %>
+        </dl>
       <% end %>
-      </ul>
-    <% else %>
-      No Application yet.
-    <% end %>
-  <% end %>
-  <hr>
-<% end %>
-
-<% if @applications.present? %>
-Jobs I applied:
-  <ul>
-  <% @applications.each do |applied| %>
-    <li>
-      <%= applied.job.company %>: <%= link_to applied.job.title, applied.job %> @<%= applied.job.location %>
-    </li>
-  <% end %>
-<% end %>
+    </div>
+  </div>
+</div>

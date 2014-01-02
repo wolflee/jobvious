@@ -1,0 +1,11 @@
+<% if current_user == job.user %>
+  <%= link_to 'Edit', edit_job_path(job), class: 'small secondary radius button' %>
+<% else %>
+  <% if applied %>
+    <div data-alert class="alert-box secondary radius">You have already applied this position, if you continue, the former application will be renewed. </div>
+    <%= link_to 'Apply Anyway!', new_job_application_path(job), class: 'small alert radius button' %>
+  <% else %>
+    <%= link_to 'Apply!', new_job_application_path(job), class: 'small success radius button' %>
+  <% end %>
+<% end %>
+<%= link_to 'Back', jobs_path, class: 'small radius button' %>

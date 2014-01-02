@@ -1,6 +1,6 @@
-<%= form_for(@job) do |f| %>
+<%= form_for(@job, data: {abide: ''}) do |f| %>
   <% if @job.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert-box alert" data-alert>
       <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being saved:</h2>
 
       <ul>
@@ -8,34 +8,47 @@
         <li><%= msg %></li>
       <% end %>
       </ul>
+      <a href="#" class="close">&times;</a>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.label :title do %>
+      Title <small>required</small>
+    <% end %>
+    <%= f.text_field :title, required: '' %>
+    <small class="error">Job title is required.</small>
   </div>
   <div class="field">
-    <%= f.label :location %><br>
+    <%= f.label :location %>
     <%= f.text_field :location %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.label :description do %>
+      Description <small>required</small>
+    <% end %>
+    <%= f.text_area :description, required: '' %>
+    <small class="error">Job description can't be blank.</small>
   </div>
   <div class="field">
-    <%= f.label :contact %><br>
-    <%= f.text_area :contact %>
+    <%= f.label :contact do %>
+      Contact <small>required</small>
+    <% end %>
+    <%= f.text_area :contact, required: '' %>
+    <small class="error">Contact is required.</small>
   </div>
   <div class="field">
-    <%= f.label :company %><br>
-    <%= f.text_field :company %>
+    <%= f.label :company do %>
+      Company <small>required</small>
+    <% end %>
+    <%= f.text_field :company, required: '' %>
+    <small class="error">Company name is required.</small>
   </div>
   <div class="field">
-    <%= f.label :url %><br>
-    <%= f.text_field :url %>
+    <%= f.label :url %>
+    <%= f.url_field :url %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: 'small success radius button expand' %>
   </div>
 <% end %>
