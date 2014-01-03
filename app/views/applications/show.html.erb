@@ -1,3 +1,5 @@
-<h1>My Application</h1>
-<p><%= @application.name %></p>
-<p><%= link_to 'Download', @application.resume.url %></p>
+<div class="large-6 small-9 small-centered large-uncentered columns">
+  <h1>Application for <%= @application.job.title %></h1>
+  <p>Applicant: <strong><%= @application.name %></strong></p>
+  <p><%= link_to 'Download', @application.resume.url, class: 'button' %></p>
+</div>

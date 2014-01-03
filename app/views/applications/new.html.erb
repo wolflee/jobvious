@@ -1,29 +1,32 @@
-<h1>Apply</h1>
-<p>Please upload your current résumé.</p>
+<div class="large-6 small-9 small-centered large-uncentered columns">
+  <h1>Apply for <%= @job.title %></h1>
+  <p>Please upload your current résumé.</p>
 
-<%= form_for(@application, url: [@job, @application]) do |f| %>
-  <% if @application.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@application.errors.count, "error") %> prohibited this application from being saved:</h2>
+  <%= form_for(@application, url: [@job, @application]) do |f| %>
+    <% if @application.errors.any? %>
+      <div id="error_explanation" class="alert-box alert" data-alert>
+        <h2><%= pluralize(@application.errors.count, "error") %> prohibited this application from being saved:</h2>
 
-      <ul>
-      <% @application.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @application.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name, 'Full name' %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.file_field :resume %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Submit application", class: 'small radius button' %>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.file_field :resume %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
-<%= link_to 'Back', @job %>
+  <%= link_to 'Back', @job, class: 'small secondary radius button' %>
+</div>
