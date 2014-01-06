@@ -36,7 +36,10 @@
             <%= text_field_tag :q, params[:q], placeholder: 'Find jobs' %>
           </div>
           <div class="large-4 small-3 columns">
-            <%= submit_tag "Search", name: nil, class: 'button expand' %>
+            <%= submit_tag "Search", name: nil, class: 'button expand show-for-large-up' %>
+            <%= button_tag class: 'button expand show-for-medium-only' do %>
+              <%= fa_icon "search" %>
+            <% end %>
           </div>
         </div>
       <% end %>

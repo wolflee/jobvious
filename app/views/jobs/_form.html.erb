@@ -27,14 +27,14 @@
     <%= f.label :description do %>
       Description <small>required</small>
     <% end %>
-    <%= f.text_area :description, required: '' %>
+    <%= f.text_area :description, id: 'description', required: '', class: 'textarea' %>
     <small class="error">Job description can't be blank.</small>
   </div>
   <div class="field">
     <%= f.label :contact do %>
       Contact <small>required</small>
     <% end %>
-    <%= f.text_area :contact, required: '' %>
+    <%= f.text_area :contact, id: 'contact', required: '', class: 'textarea' %>
     <small class="error">Contact is required.</small>
   </div>
   <div class="field">

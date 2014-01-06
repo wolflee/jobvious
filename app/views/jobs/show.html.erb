@@ -8,10 +8,10 @@
   <div class="panel">
   <p class="company"><%= @job.company %></p>
   <p class="location"><em>Location: </em><%= @job.location %></p>
-  <p class="url"><%= link_to @job.url, @job.url %></p>
+  <p class="url"><%= link_to @job.url, sanitize(@job.url) %></p>
   </div>
 
-  <p class="description"><%= @job.description %></p>
+  <p class="description"><%= sanitize @job.description, tags: %w(strong b i u strike ol ul li address blockquote pre code br div p), attributes: %w(src) %></p>
 </div>
 
 <div class="large-4 small-12 columns">

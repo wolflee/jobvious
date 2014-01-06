@@ -5,7 +5,9 @@
         <%= text_field_tag :q, params[:q], placeholder: 'Find jobs' %>
       </div>
       <div class="small-2 columns">
-        <%= submit_tag "Search", name: nil, class: 'button postfix' %>
+        <%= button_tag class: 'button postfix' do %>
+          <%= fa_icon "search" %>
+        <% end %>
       </div>
     </div>
   <% end %>

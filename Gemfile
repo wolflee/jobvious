@@ -5,6 +5,7 @@ gem 'rails', '4.0.2'
 gem 'pg'
 
 gem 'foundation-rails'
+gem 'font-awesome-rails', '~> 3.2.1.3'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
